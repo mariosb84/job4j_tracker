@@ -34,21 +34,19 @@ Item[] itemWithoutNull = new Item[items.length];
                 size++;
             }
         }
-        itemWithoutNull = Arrays.copyOf(itemWithoutNull, size);
-        return itemWithoutNull;
+        return Arrays.copyOf(itemWithoutNull, size);
     }
     public Item[] findByName(String key) {
         Item[] itemWithKey = new Item[items.length];
         int size = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             Item item = items[i];
-            if ((item != null) && (item.getName().equals(key))) {
+            if (item.getName().equals(key)) {
                 itemWithKey[size] = item;
                 size++;
             }
         }
-        itemWithKey = Arrays.copyOf(itemWithKey, size);
-        return itemWithKey;
+        return Arrays.copyOf(itemWithKey, size);
     }
 
 }

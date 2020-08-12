@@ -13,7 +13,7 @@ public class Tracker {
         return item;
     }
 
-    public Item findById(int id) {
+    /*public Item findById(int id) {
         Item rsl = null;
         for (int index = 0; index < size; index++) {
             Item item = items[index];
@@ -23,6 +23,12 @@ public class Tracker {
             }
         }
         return rsl;
+    }*/
+    public Item findById(int id) {
+        /* Находим индекс */
+        int index = indexOf(id);
+        /* Если индекс найден возвращаем item, иначе null */
+        return index != -1 ? items[index] : null;
     }
     /*public Item[] findAll() {
 Item[] itemWithoutNull = new Item[items.length];
@@ -50,6 +56,40 @@ Item[] itemWithoutNull = new Item[items.length];
             }
         }
         return Arrays.copyOf(itemWithKey, size);
+    }
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int index = 0; index < size; index++) {
+            if (items[index].getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+    /*public boolean replace(int id, Item item) {
+        boolean result = false;
+        int index = indexOf(id);
+       if (index != -1) {
+           items[index] = item;
+           item.setId(item.getId());
+           result = true;
+       }
+    return result;
+    }*/
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean replaced = false;
+        for (Item item1 : this.items) {
+            if (item1 != null && item1.getId() == index) {
+                 item1 = null;
+                item.setId(index);
+                replaced = true;
+                break;
+            }
+        }
+
+        return replaced;
     }
 
 }

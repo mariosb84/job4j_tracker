@@ -29,6 +29,14 @@ public class StartUI {
         System.out.println("Выводим весь массив методом \"findAll\":");
         System.out.println();
         System.out.println(Arrays.toString(tracker.findAll()));
+        System.out.println();
+        System.out.println("Заменяем методом \"replace\":");
+        System.out.println();
+        System.out.println(tracker.replace(1,itemTwo));
+        System.out.println();
+        System.out.println("Снова выводим весь массив методом \"findAll\":");
+        System.out.println();
+        System.out.println(Arrays.toString(tracker.findAll()));
 
     }
 }

@@ -77,18 +77,5 @@ Item[] itemWithoutNull = new Item[items.length];
         }
         return replaced;
     }
-    public static void main(String[] args) {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        tracker.add(item);
-        item.setId(2);
-        System.out.println(item.getId());
-        System.out.println(tracker.indexOf(item.getId()));
-        Item item2 = new Item();
-        System.out.println(tracker.replace(item.getId(),item2));
-        System.out.println(item2.getId());
-        System.out.println(tracker.findById(item2.getId()));
-        System.out.println(tracker.findById(item.getId()));
-    }
 
 }

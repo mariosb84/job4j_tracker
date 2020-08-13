@@ -26,4 +26,22 @@ public class TrackerTest {
         tracker.replace(id, bugWithDesc);
         assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
+    @Test
+    public void whenReplaceTwice() {
+        Tracker tracker = new Tracker();
+        Item item = new Item();
+        item.setName("Cat");
+        tracker.add(item);
+        int id = item.getId();
+        Item item1 = new Item();
+        item1.setName("Dog");
+        tracker.add(item1);
+        Item item2 = new Item();
+        item2.setName("Mouse");
+        tracker.add(item2);
+        tracker.replace(id, item1);
+        assertThat(tracker.findById(id).getName(), is("Dog"));
+        tracker.replace(id,item2);
+        assertThat(tracker.findById(id).getName(), is("Mouse"));
+    }
 }

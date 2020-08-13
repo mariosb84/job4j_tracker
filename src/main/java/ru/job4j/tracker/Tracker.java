@@ -67,29 +67,28 @@ Item[] itemWithoutNull = new Item[items.length];
         }
         return rsl;
     }
-    /*public boolean replace(int id, Item item) {
-        boolean result = false;
-        int index = indexOf(id);
-       if (index != -1) {
-           items[index] = item;
-           item.setId(item.getId());
-           result = true;
-       }
-    return result;
-    }*/
     public boolean replace(int id, Item item) {
-        int index = indexOf(id);
         boolean replaced = false;
-        for (Item item1 : this.items) {
-            if (item1 != null && item1.getId() == index) {
-                 item1 = null;
-                item.setId(index);
-                replaced = true;
-                break;
-            }
+        int index = indexOf(id);
+        if (index != -1) {
+        items[index] = item;
+        item.setId(id);
+            replaced = true;
         }
-
         return replaced;
+    }
+    public static void main(String[] args) {
+        Tracker tracker = new Tracker();
+        Item item = new Item();
+        tracker.add(item);
+        item.setId(2);
+        System.out.println(item.getId());
+        System.out.println(tracker.indexOf(item.getId()));
+        Item item2 = new Item();
+        System.out.println(tracker.replace(item.getId(),item2));
+        System.out.println(item2.getId());
+        System.out.println(tracker.findById(item2.getId()));
+        System.out.println(tracker.findById(item.getId()));
     }
 
 }

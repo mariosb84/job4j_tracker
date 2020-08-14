@@ -77,5 +77,16 @@ Item[] itemWithoutNull = new Item[items.length];
         }
         return replaced;
     }
+    public boolean delete(int id) {
+        boolean deleted = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(items,index + 1, items, index, size - index);
+            items[size - 1] = null;
+            size--;
+            deleted = true;
+        }
+        return deleted;
+    }
 
 }

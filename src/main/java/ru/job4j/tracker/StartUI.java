@@ -30,13 +30,18 @@ public class StartUI {
                 int id = Integer.valueOf(scanner.nextLine());
                 Item input = new Item();
                 input.setName(name);
-                System.out.println(tracker.replace(id,input));
+                tracker.replace(id,input);
+                 if ((tracker.findById(id).getName().equals(name)) && id > 0) {
+                     System.out.println("Replaced correctly");
+                 } else {
+                     System.out.println("Replaced incorrectly");
+                 }
              } else if (select == 3) {
                  System.out.println("=== Delete Item ====");
                  System.out.print("Enter id for delete : ");
                  int id = Integer.valueOf(scanner.nextLine());
                  tracker.delete(id);
-                 if (tracker.delete(id)) {
+                 if (((tracker.findById(id).getId()) != id) && id > 0) {
                      System.out.println("Deleted correctly");
                  } else {
                      System.out.println("Deleted incorrectly");
@@ -49,7 +54,7 @@ public class StartUI {
              } else if (select == 6) {
                 run = false;
             } else {
-                 System.out.println("Select from 0 to 6 dummy bot !!!");
+                 System.out.println("Select from 0 to 6 !!!");
              }
         }
     }
@@ -68,6 +73,8 @@ public class StartUI {
         Scanner scanner = new Scanner(System.in);
         Tracker tracker = new Tracker();
         new StartUI().init(scanner, tracker);
+
+
 
     }
 }

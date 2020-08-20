@@ -1,9 +1,6 @@
 package ru.job4j.tracker;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class StartUI {
@@ -31,7 +28,7 @@ public class StartUI {
                 Item input = new Item();
                 input.setName(name);
                 tracker.replace(id,input);
-                 if ((tracker.findById(id).getName().equals(name)) && id > 0) {
+                 if (tracker.replace(id,input)) {
                      System.out.println("Replaced correctly");
                  } else {
                      System.out.println("Replaced incorrectly");
@@ -40,18 +37,36 @@ public class StartUI {
                  System.out.println("=== Delete Item ====");
                  System.out.print("Enter id for delete : ");
                  int id = Integer.valueOf(scanner.nextLine());
+                 Item item = tracker.findById(id);
                  tracker.delete(id);
-                 if (((tracker.findById(id).getId()) != id) && id > 0) {
+                 if (tracker.delete(id)) {
                      System.out.println("Deleted correctly");
                  } else {
                      System.out.println("Deleted incorrectly");
                  }
 
              } else if (select == 4) {
-                 System.out.println("");
+                 System.out.println("=== Find Item by id ====");
+                 System.out.print("Enter id to find : ");
+                 int id = Integer.valueOf(scanner.nextLine());
+                 Item item = tracker.findById(id);
+                 if (item != null && (item.getId() == id)) {
+                     System.out.println(item);
+                 } else {
+                     System.out.println("Заявки с таким id не найдены");
+                 }
              } else if (select == 5) {
-                 System.out.println("");
+                 System.out.println("=== Find Item by name ====");
+                 System.out.print("Enter name to find : ");
+                 String name = scanner.nextLine();
+                 Item[] items = tracker.findByName(name);
+                 if ((items.length > 0)) {
+                     System.out.println(Arrays.toString(tracker.findByName(name)));
+                 } else {
+                     System.out.println("Заявки с таким именем не найдены");
+                 }
              } else if (select == 6) {
+                 System.out.println("=== Exit menu ====");
                 run = false;
             } else {
                  System.out.println("Select from 0 to 6 !!!");

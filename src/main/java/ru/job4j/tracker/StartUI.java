@@ -37,9 +37,10 @@ public class StartUI {
                  System.out.println("=== Delete Item ====");
                  System.out.print("Enter id for delete : ");
                  int id = Integer.valueOf(scanner.nextLine());
-                 Item item = tracker.findById(id);
-                 tracker.delete(id);
-                 if (tracker.delete(id)) {
+                 Item item = new Item();
+                 item.setId(id);
+                 if (tracker.findById(id) != null &&
+                 tracker.delete(id)) {
                      System.out.println("Deleted correctly");
                  } else {
                      System.out.println("Deleted incorrectly");

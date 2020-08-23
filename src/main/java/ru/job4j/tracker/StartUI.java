@@ -27,7 +27,6 @@ public class StartUI {
                 int id = Integer.valueOf(scanner.nextLine());
                 Item input = new Item();
                 input.setName(name);
-                tracker.replace(id,input);
                  if (tracker.replace(id,input)) {
                      System.out.println("Replaced correctly");
                  } else {
@@ -39,8 +38,7 @@ public class StartUI {
                  int id = Integer.valueOf(scanner.nextLine());
                  Item item = new Item();
                  item.setId(id);
-                 if (tracker.findById(id) != null &&
-                 tracker.delete(id)) {
+                 if (tracker.delete(id)) {
                      System.out.println("Deleted correctly");
                  } else {
                      System.out.println("Deleted incorrectly");
@@ -51,7 +49,7 @@ public class StartUI {
                  System.out.print("Enter id to find : ");
                  int id = Integer.valueOf(scanner.nextLine());
                  Item item = tracker.findById(id);
-                 if (item != null && (item.getId() == id)) {
+                 if (item != null) {
                      System.out.println(item);
                  } else {
                      System.out.println("Заявки с таким id не найдены");

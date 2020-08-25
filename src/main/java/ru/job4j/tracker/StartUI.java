@@ -17,7 +17,7 @@ public class StartUI {
                 item.setName(name);
                 tracker.add(item);*/
                           }  else if (select == 1) {
-                 StartUI.showAllItems(input, tracker);
+                 StartUI.showAllItems(tracker);
             } else if (select == 2) {
                  StartUI.editItem(input, tracker);/*
                 System.out.println("=== Edit Item ====");
@@ -92,8 +92,13 @@ public class StartUI {
         item.setName(name);
         tracker.add(item);
     }
-    public static void showAllItems(Input input, Tracker tracker) {
-        System.out.println(Arrays.toString(tracker.findAll()));
+    public static void showAllItems(Tracker tracker) {
+        System.out.println("=== Show all items ===");
+        Item[] item = tracker.findAll();
+            for (Item item1 : item) {
+                System.out.println(item1);
+            }
+        //System.out.println(Arrays.toString(tracker.findAll()));
     }
     public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item ====");

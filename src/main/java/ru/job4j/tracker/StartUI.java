@@ -136,7 +136,9 @@ public class StartUI {
         String name = input.askStr("Enter name to find : ");
         Item[] items = tracker.findByName(name);
         if ((items.length > 0)) {
-            System.out.println(Arrays.toString(tracker.findByName(name)));
+            for (Item item1 : items) {
+                System.out.println(item1);
+            }
         } else {
             System.out.println("Заявки с таким именем не найдены");
         }

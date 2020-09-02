@@ -113,8 +113,9 @@ public class StartUITest2 {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item());
         item.setName("itemFirst");
+        String findName = "itemFirst";
         Input in = new StubInput(
-                new String[] {"0", "1" }
+                new String[] {"0", findName, "1" }
         );
         UserAction[] actions = {
                 new FindByNameAction(out),
@@ -140,8 +141,9 @@ public class StartUITest2 {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item());
         item.setName("itemFirst");
+        String id = String.valueOf(item.getId());
         Input in = new StubInput(
-                new String[] {"0", "1" }
+                new String[] {"0", id, "1" }
         );
         UserAction[] actions = {
                 new FindByIdAction(out),

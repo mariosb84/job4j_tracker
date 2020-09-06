@@ -185,4 +185,46 @@ public class StartUITest2 {
                 )
         ));
     }
+    @Test
+    public void whenInvalidInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"one", "1"}
+        );
+        ValidateInput input = new ValidateInput(out, in);
+        int selected = input.askInt("Enter menu:");
+        assertThat(selected, is(1));
+    }
+    @Test
+    public void whenValidInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0"}
+        );
+        ValidateInput input = new ValidateInput(out, in);
+        int selected = input.askInt("Enter menu:");
+        assertThat(selected, is(0));
+    }
+    @Test
+    public void whenValidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] { "a", "b", "0" }
+        );
+        ValidateInput input = new ValidateInput(out, in);
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        assertThat(out.toString(), is(
+                String.format(
+                        "Menu.%n"
+                                + "0.Exit Program.%n"
+                                + "Please enter validate data again."+ System.lineSeparator()
+                                + "Please enter validate data again."+ System.lineSeparator()
+                                + "=== Exit menu ====" + System.lineSeparator()
+                )
+        ));
+    }
 }

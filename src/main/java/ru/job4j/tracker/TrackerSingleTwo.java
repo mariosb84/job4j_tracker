@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.Item;
+import java.util.Arrays;
+
 public class TrackerSingleTwo {
     private  Item item = new Item();
     private Tracker tracker = new Tracker();
@@ -16,26 +17,20 @@ public class TrackerSingleTwo {
         return instance;
     }
 
-    public Item add(Item model) {
-        this.item = model;
-        return this.tracker.add(model);
-    }
-    public Item findById(Item model) {
-        this.item = model;
-        return this.tracker.findById(model.getId());
+    public Tracker getInstanceOne() {
+        return tracker;
     }
 
     public static void main(String[] args) {
-        TrackerSingleTwo trackerSingleTwo = TrackerSingleTwo.getInstance();
+        TrackerSingleTwo tracker = TrackerSingleTwo.getInstance();
+        TrackerSingleTwo tracker2 = TrackerSingleTwo.getInstance();
         Item item = new Item();
-        item.setName("Item1");
-        trackerSingleTwo.add(item);
-        System.out.println(trackerSingleTwo.findById(item));
-
-        TrackerSingleTwo trackerSingleTwo2 = TrackerSingleTwo.getInstance();
+        item.setName("Item");
+        tracker.getInstanceOne().add(item);
         Item item2 = new Item();
         item2.setName("Item2");
-        trackerSingleTwo2.add(item2);
-        System.out.println(trackerSingleTwo2.findById(item2));
+        tracker2.getInstanceOne().add(item2);
+        System.out.println(tracker.getInstanceOne().findById(item.getId()));
+        System.out.println(Arrays.toString(tracker.getInstanceOne().findAll()));
     }
 }

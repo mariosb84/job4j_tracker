@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.Item;
+import java.util.Arrays;
+
 public class TrackerSingleFour {
     private  Item item = new Item();
     private Tracker tracker = new Tracker();
@@ -11,13 +12,8 @@ public class TrackerSingleFour {
         return Holder.INSTANCE;
     }
 
-    public Item add(Item model) {
-        this.item = model;
-        return this.tracker.add(model);
-    }
-    public Item findById(Item model) {
-        this.item = model;
-        return this.tracker.findById(model.getId());
+    public Tracker getInstanceOne() {
+        return tracker;
     }
 
     private static final class Holder {
@@ -26,15 +22,14 @@ public class TrackerSingleFour {
 
     public static void main(String[] args) {
         TrackerSingleFour tracker = TrackerSingleFour.getInstance();
-        Item item = new Item();
-        item.setName("Item1");
-        tracker.add(item);
-        System.out.println(tracker.findById(item));
-
         TrackerSingleFour tracker2 = TrackerSingleFour.getInstance();
+        Item item = new Item();
+        item.setName("Item");
+        tracker.getInstanceOne().add(item);
         Item item2 = new Item();
         item2.setName("Item2");
-        tracker2.add(item2);
-        System.out.println(tracker2.findById(item2));
+        tracker2.getInstanceOne().add(item2);
+        System.out.println(tracker.getInstanceOne().findById(item.getId()));
+        System.out.println(Arrays.toString(tracker.getInstanceOne().findAll()));
     }
 }

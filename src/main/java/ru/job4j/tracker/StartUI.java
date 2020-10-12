@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StartUI {
     private final Output out;
@@ -13,7 +17,8 @@ public class StartUI {
         while (run) {
             this.showMenu();
             int select = Integer.valueOf(input.askStr("Select: "));*/
-   public void init(Input input, Tracker tracker, UserAction[] actions) {
+   //public void init(Input input, Tracker tracker, UserAction[] actions) {                             replace to List   List<Item> items = new ArrayList<Item>();
+       public void init(Input input, Tracker tracker, UserAction[] actions) {
        boolean run = true;
        while (run) {
            this.showMenu(actions);
@@ -134,7 +139,8 @@ public class StartUI {
     }
     public static void showAllItems(Tracker tracker) {
         System.out.println("=== Show all items ===");
-        Item[] item = tracker.findAll();
+        //Item[] item = tracker.findAll();                                                            replace to List
+        List<Item> item = tracker.findAll();
             for (Item item1 : item) {
                 System.out.println(item1);
             }
@@ -174,8 +180,10 @@ public class StartUI {
     public static void findByNameItem(Input input, Tracker tracker) {
         System.out.println("=== Find Item by name ====");
         String name = input.askStr("Enter name to find : ");
-        Item[] items = tracker.findByName(name);
-        if ((items.length > 0)) {
+        //Item[] items = tracker.findByName(name);                                                      replace to List
+        List<Item> items = tracker.findByName(name);
+        //if ((items.length > 0)) {                                                                     replace to List
+            if ((items.size() > 0)) {
             for (Item item1 : items) {
                 System.out.println(item1);
             }

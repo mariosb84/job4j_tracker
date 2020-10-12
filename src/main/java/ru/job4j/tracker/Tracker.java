@@ -15,7 +15,8 @@ public class Tracker {
         item.setId(ids++);
         //items[size++] = item;                                                                         replace to List
         //items.set(size++, item);                                                                      replace to List
-        items.add(size++, item);
+        //items.add(size++, item);                                                                      replace to List
+        items.add(item);
         return item;
     }
 
@@ -59,24 +60,28 @@ Item[] itemWithoutNull = new Item[items.length];
        // Item[] itemWithKey = new Item[items.length];                                                  replace to List
        // Item[] itemWithKey = new Item[items.size()];                                                  replace to List
             List<Item> itemWithKey = new ArrayList<Item>();
-        int size = 0;
-        for (int i = 0; i < this.size; i++) {
+        //int size = 0;                                                                                 replace to List
+            //for (int i = 0; i < this.size; i++) {                                                     replace to List
+        for (Item item : items) {
            // Item item = items[i];                                                                     replace to List
-            Item item = items.get(i);
+           // Item item = items.get(i);                                                                 replace to List
             if (item.getName().equals(key)) {
-               // itemWithKey[size] = item;                                                              replace to List            ДОДЕЛАТЬ!!!!!!!!!
-               // itemWithKey.get() = item;
-                size++;
+               // itemWithKey[size] = item;                                                              replace to List
+                itemWithKey.add(item);
+               // size++;                                                                                replace to List
             }
         }
         return List.copyOf(itemWithKey);
     }
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
+       // for (int index = 0; index < size; index++) {                                                  replace to List
+            for (Item item : items) {
             //if (items[index].getId() == id) {                                                         replace to List
-                if (items.get(index).getId() == id) {
-                rsl = index;
+                //if (items.get(index).getId() == id) {                                                 replace to List
+                    if (item.getId() == id) {
+               // rsl = index;                                                                           replace to List
+                        rsl = item.getId();
                 break;
             }
         }
@@ -97,11 +102,12 @@ Item[] itemWithoutNull = new Item[items.length];
         boolean deleted = false;
         int index = indexOf(id);
         if (index != -1) {
-            //System.arraycopy(items,index + 1, items, index, size - index);                            replace to List
-            System.arraycopy(items,index + 1, items, index, size - index);                                          /// ДОДЕЛАТЬ!!!!!!!!!
+             //System.arraycopy(items,index + 1, items, index, size - index);                           replace to List
+             // System.arraycopy(items,index + 1, items, index, size - index);                          replace to List
             //items[size - 1] = null;                                                                   replace to List
-            items.set(size - 1, null);
-            size--;
+            // items.set(size - 1, null);                                                               replace to List
+           // size--;
+            items.remove(index);
             deleted = true;
         }
         return deleted;

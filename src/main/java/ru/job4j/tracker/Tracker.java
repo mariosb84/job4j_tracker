@@ -9,7 +9,7 @@ public class Tracker {
     //private final Item[] items = new Item[100];                                                       replace to List
     List<Item> items = new ArrayList<Item>();
     private int ids = 1;
-    private int size = 0;
+   // private int size = 0;                                                           dont use          replace to List
 
     public Item add(Item item) {
         item.setId(ids++);

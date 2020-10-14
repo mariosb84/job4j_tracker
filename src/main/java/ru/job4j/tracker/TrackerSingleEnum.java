@@ -19,7 +19,7 @@ public enum TrackerSingleEnum {
         item2.setName("Item2");
         tracker2.getInstance().add(item2);
         System.out.println(tracker.getInstance().findById(item.getId()));
-        System.out.println(Arrays.toString(tracker.getInstance().findAll()));
+        //System.out.println(Arrays.toString(tracker.getInstance().findAll()));                 Переделать под лист !!!
 
 
 

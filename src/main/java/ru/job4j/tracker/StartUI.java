@@ -17,17 +17,21 @@ public class StartUI {
         while (run) {
             this.showMenu();
             int select = Integer.valueOf(input.askStr("Select: "));*/
-   //public void init(Input input, Tracker tracker, UserAction[] actions) {                             replace to List   List<Item> items = new ArrayList<Item>();
-       public void init(Input input, Tracker tracker, UserAction[] actions) {
+   //public void init(Input input, Tracker tracker, UserAction[] actions) {                      replace to List   List      <Item> items = new ArrayList<Item>();
+       public void init(Input input, Tracker tracker, List<UserAction> actions) {
        boolean run = true;
        while (run) {
+          // this.showMenu(actions);                                                             replace to List   List
            this.showMenu(actions);
            int select = input.askInt("Select: ");
-           if (select < 0 || select >= actions.length) {
-               out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+          // if (select < 0 || select >= actions.length) {                                       replace to List   List
+               if (select < 0 || select >= actions.size()) {
+                 //out.println("Wrong input, you can select: 0 .. " + (actions.length() - 1));   replace to List   List
+               out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                continue;
            }
-           UserAction action = actions[select];
+         //  UserAction action = actions[select];                                                replace to List   List
+           UserAction action = actions.get(select);
            run = action.execute(input, tracker);
 
              /*if (select == 0) {
@@ -105,10 +109,14 @@ public class StartUI {
         System.out.println("5. Find items by name.");
         System.out.println("6. Exit Program.");
     }*/
-    private void showMenu(UserAction[] actions) {
+   // private void showMenu(UserAction[] actions) {                                              replace to List   List
+        private void showMenu( List<UserAction> actions) {
         out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
-            out.println(index + "." + actions[index].name());
+       // for (int index = 0; index < actions.length; index++) {                                 replace to List   List
+          //  out.println(index + "." + actions[index].name());                                  replace to List   List
+            int i = 0;                                                                  //  add: replace to List   List
+            for (UserAction index : actions) {
+                out.println(i++ + "." + index.name()) ;
         }
     }
     /*public static void main(String[] args) {
@@ -121,12 +129,22 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new AddAction(output),new ShowAllAction(output),new EditAction(output),
-                new DeleteAction(output),new FindByIdAction(output),new FindByNameAction(output),
-                new ExitAction(output)
+        /*UserAction[] actions = {                                                                       replace to List
+                new AddAction(output),new ShowAllAction(output),new EditAction(output),                  replace to List
+                new DeleteAction(output),new FindByIdAction(output),new FindByNameAction(output),        replace to List
+                new ExitAction(output)                                                                   replace to List
+                //new Exit()                                                                             replace to List
+        };*/                                                                                      //     replace to List
+        List<UserAction> actions = new ArrayList<UserAction>();
+                 actions.add(new AddAction(output));
+                 actions.add(new ShowAllAction(output));
+                 actions.add(new EditAction(output));
+                 actions.add(new DeleteAction(output));
+                 actions.add(new FindByIdAction(output));
+                 actions.add (new FindByNameAction(output));
+                 actions.add(new ExitAction(output));
                 //new Exit()
-        };
+
         new StartUI(output).init(input, tracker, actions);
     }
 

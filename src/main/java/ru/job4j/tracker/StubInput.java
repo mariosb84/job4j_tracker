@@ -5,7 +5,7 @@ import java.util.List;
 public class StubInput implements Input {
     //private String[] answers;                                                                         replace to List
     private List<String> answers;
-    private int position = 0;
+    private int position = 0;                                                                             // убрать ???
 
    // public StubInput(String[] answers) {                                                              replace to List
         public StubInput(List<String> answers) {

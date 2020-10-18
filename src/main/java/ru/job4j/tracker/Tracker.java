@@ -9,13 +9,13 @@ public class Tracker {
     //private final Item[] items = new Item[100];                                                       replace to List
     List<Item> items = new ArrayList<Item>();
     private int ids = 1;
-   // private int size = 0;                                                           dont use          replace to List
+   // private int size = 0;                                                                 //            replace to List
 
     public Item add(Item item) {
         item.setId(ids++);
         //items[size++] = item;                                                                         replace to List
         //items.set(size++, item);                                                                      replace to List
-        //items.add(size++, item);                                                                      replace to List
+        //items.add(size++, item);                                                                  //    replace to List
         items.add(item);
         return item;
     }
@@ -36,7 +36,15 @@ public class Tracker {
         int index = indexOf(id);
         /* Если индекс найден возвращаем item, иначе null */
        // return index != -1 ? items[index] : null;                                                     replace to List
-        return index != -1 ? items.get(index) : null;
+       // return index != -1 ? items.get(index - 1) : null;                                             replace to List
+        Item itemReturn = new Item();
+        for (Item item : items) {
+            if (item.getId() == (index)) {
+                itemReturn = item;
+                break;
+            }
+        }
+        return itemReturn;
     }
     /*public Item[] findAll() {
 Item[] itemWithoutNull = new Item[items.length];
@@ -92,7 +100,7 @@ Item[] itemWithoutNull = new Item[items.length];
         int index = indexOf(id);
         if (index != -1) {
        // items[index] = item;                                                                          replace to List
-            items.set(index, item);
+            items.set(index - 1, item);
         item.setId(id);
             replaced = true;
         }
@@ -107,10 +115,19 @@ Item[] itemWithoutNull = new Item[items.length];
             //items[size - 1] = null;                                                                   replace to List
             // items.set(size - 1, null);                                                               replace to List
            // size--;
-            items.remove(index);
+            Item itemDelete = new Item();
+            for (Item item : items) {
+                if (item.getId() == (index)) {
+                    itemDelete = item;
+                    break;
+                }
+            }
+            items.remove(itemDelete.getId() - 1);
+           // items.indexOf();
             deleted = true;
         }
         return deleted;
     }
+
 
 }

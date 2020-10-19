@@ -33,11 +33,11 @@ public class Tracker {
     }*/
     public Item findById(int id) {
         /* Находим индекс */
-       // int index = indexOf(id);                                                                      replace to List
+        int index = indexOf(id);                                                                   //   replace to List
         /* Если индекс найден возвращаем item, иначе null */
        // return index != -1 ? items[index] : null;                                                     replace to List
       //  return index != -1 ? items.get(index - 1) : null;
-       int index = findPosList(id);
+      // int index = findPosList(id);
        return index != -1 ? items.get(index) : null;
     }
     /*public Item[] findAll() {
@@ -77,14 +77,11 @@ Item[] itemWithoutNull = new Item[items.length];
     }
     private int indexOf(int id) {
         int rsl = -1;
-       // for (int index = 0; index < size; index++) {                                                  replace to List
-            for (Item item : items) {
+        //for (int index = 0; index < size; index++) {                                                  replace to List
+        for (int index = 0; index < items.size(); index++) {
             //if (items[index].getId() == id) {                                                         replace to List
-                //if (items.get(index).getId() == id) {                                                 replace to List
-                    if (item.getId() == id) {
-               // rsl = index;                                                                           replace to List
-                       // rsl = item.getId();
-                        rsl = id;
+                    if (items.get(index).getId() == id) {
+                rsl = index;
                 break;
             }
         }
@@ -92,8 +89,8 @@ Item[] itemWithoutNull = new Item[items.length];
     }
     public boolean replace(int id, Item item) {
         boolean replaced = false;
-        //int index = indexOf(id);                                                                      replace to List
-        int index = findPosList(id);
+        int index = indexOf(id);                                                                 //     replace to List
+        //int index = findPosList(id);
         if (index != -1) {
        // items[index] = item;                                                                          replace to List
             items.set(index, item);
@@ -104,8 +101,8 @@ Item[] itemWithoutNull = new Item[items.length];
     }
     public boolean delete(int id) {
         boolean deleted = false;
-        //int index = indexOf(id);                                                                      replace to List
-        int index = findPosList(id);
+        int index = indexOf(id);                                                                    //  replace to List
+       // int index = findPosList(id);
         if (index != -1) {
              //System.arraycopy(items,index + 1, items, index, size - index);                           replace to List
              // System.arraycopy(items,index + 1, items, index, size - index);                          replace to List
@@ -117,7 +114,7 @@ Item[] itemWithoutNull = new Item[items.length];
         }
         return deleted;
     }
-    private int findPosList(int id) {
+    private int findPosList(int id) {                                                           // dont use
         int index = indexOf(id);
         int positionList = -1;
         if (index != -1) {
@@ -130,6 +127,14 @@ Item[] itemWithoutNull = new Item[items.length];
         }
         return positionList;
     }
+
+   /* public static void main(String[] args) {                                                    // dont use
+        Item item = new Item();
+        Tracker tracker = new Tracker();
+        tracker.add(item);
+        item.setName("1");
+        System.out.println(tracker.indexOf(1));
+    }*/
 
 
 

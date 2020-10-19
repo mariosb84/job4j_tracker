@@ -83,7 +83,8 @@ Item[] itemWithoutNull = new Item[items.length];
                 //if (items.get(index).getId() == id) {                                                 replace to List
                     if (item.getId() == id) {
                // rsl = index;                                                                           replace to List
-                        rsl = item.getId();
+                       // rsl = item.getId();
+                        rsl = id;
                 break;
             }
         }

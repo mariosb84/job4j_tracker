@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -19,8 +24,9 @@ public class TrackerSingleTest {
         Item item3 = new Item();
         item3.setName("test3");
         tracker3.getInstance().add(item3);
-        assertThat(tracker.getInstance().findAll(), is (new Item[]{item , item2, item3}));
-
+        //assertThat(tracker.getInstance().findAll(), is (new Item[]{item , item2, item3}));         //replace to List    //List<Integer> expect = Arrays.asList(1, 2, 3);
+        List<Item> expect = Arrays.asList(item, item2, item3);                                                           //assertThat(ConvertList.convert(in), is(expect));
+        assertThat(tracker.getInstance().findAll(), is(expect));
     }
     @Test
     public void whenTrackerSingleTwo () {
@@ -36,7 +42,9 @@ public class TrackerSingleTest {
         Item item3 = new Item();
         item3.setName("test3");
         tracker3.getInstanceOne().add(item3);
-        assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));
+        //assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));                          //replace to List
+        List<Item> expect = Arrays.asList(item, item2, item3);
+        assertThat(tracker.getInstanceOne().findAll(), is(expect));
 
     }
     @Test
@@ -53,7 +61,9 @@ public class TrackerSingleTest {
         Item item3 = new Item();
         item3.setName("test3");
         tracker3.getInstanceOne().add(item3);
-        assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));
+        //assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));                          //replace to List
+        List<Item> expect = Arrays.asList(item, item2, item3);
+        assertThat(tracker.getInstanceOne().findAll(), is(expect));
 
     }
     @Test
@@ -70,7 +80,9 @@ public class TrackerSingleTest {
         Item item3 = new Item();
         item3.setName("test3");
         tracker3.getInstanceOne().add(item3);
-        assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));
+        //assertThat(tracker.getInstanceOne().findAll(), is (new Item[]{item , item2, item3}));                          //replace to List
+        List<Item> expect = Arrays.asList(item, item2, item3);
+        assertThat(tracker.getInstanceOne().findAll(), is(expect));
 
     }
 }

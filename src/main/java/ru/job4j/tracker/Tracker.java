@@ -33,18 +33,12 @@ public class Tracker {
     }*/
     public Item findById(int id) {
         /* Находим индекс */
-        int index = indexOf(id);
+       // int index = indexOf(id);                                                                      replace to List
         /* Если индекс найден возвращаем item, иначе null */
        // return index != -1 ? items[index] : null;                                                     replace to List
-       // return index != -1 ? items.get(index - 1) : null;                                             replace to List
-        Item itemReturn = new Item();
-        for (Item item : items) {
-            if (item.getId() == (index)) {
-                itemReturn = item;
-                break;
-            }
-        }
-        return itemReturn;
+      //  return index != -1 ? items.get(index - 1) : null;
+       int index = findPosList(id);
+       return index != -1 ? items.get(index) : null;
     }
     /*public Item[] findAll() {
 Item[] itemWithoutNull = new Item[items.length];
@@ -97,10 +91,11 @@ Item[] itemWithoutNull = new Item[items.length];
     }
     public boolean replace(int id, Item item) {
         boolean replaced = false;
-        int index = indexOf(id);
+        //int index = indexOf(id);                                                                      replace to List
+        int index = findPosList(id);
         if (index != -1) {
        // items[index] = item;                                                                          replace to List
-            items.set(index - 1, item);
+            items.set(index, item);
         item.setId(id);
             replaced = true;
         }
@@ -108,26 +103,33 @@ Item[] itemWithoutNull = new Item[items.length];
     }
     public boolean delete(int id) {
         boolean deleted = false;
-        int index = indexOf(id);
+        //int index = indexOf(id);                                                                      replace to List
+        int index = findPosList(id);
         if (index != -1) {
              //System.arraycopy(items,index + 1, items, index, size - index);                           replace to List
              // System.arraycopy(items,index + 1, items, index, size - index);                          replace to List
             //items[size - 1] = null;                                                                   replace to List
             // items.set(size - 1, null);                                                               replace to List
            // size--;
-            Item itemDelete = new Item();
-            for (Item item : items) {
-                if (item.getId() == (index)) {
-                    itemDelete = item;
-                    break;
-                }
-            }
-            items.remove(itemDelete.getId() - 1);
-           // items.indexOf();
+            items.remove(index);
             deleted = true;
         }
         return deleted;
     }
+    private int findPosList(int id) {
+        int index = indexOf(id);
+        int positionList = -1;
+        if (index != -1) {
+            for (Item item : items) {
+                positionList++;
+                if (item.getId() == (index)) {
+                    break;
+                }
+            }
+        }
+        return positionList;
+    }
+
 
 
 }

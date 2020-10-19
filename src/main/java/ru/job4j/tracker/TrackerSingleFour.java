@@ -31,5 +31,6 @@ public class TrackerSingleFour {
         tracker2.getInstanceOne().add(item2);
         System.out.println(tracker.getInstanceOne().findById(item.getId()));
         //System.out.println(Arrays.toString(tracker.getInstanceOne().findAll()));               Переделать под лист !!!
+        System.out.println(tracker.getInstanceOne().findAll());
     }
 }

@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 import java.util.Arrays;
+import java.util.List;
 
 public enum TrackerSingleEnum {
     INSTANCE;// здесь мы указываем перечисления.
@@ -19,11 +20,8 @@ public enum TrackerSingleEnum {
         item2.setName("Item2");
         tracker2.getInstance().add(item2);
         System.out.println(tracker.getInstance().findById(item.getId()));
-        //System.out.println(Arrays.toString(tracker.getInstance().findAll()));                 Переделать под лист !!!
-
-
-
-
+       // System.out.println(Arrays.toString(tracker.getInstance().findAll()));                // Переделать под лист !!!
+        System.out.println(tracker.getInstance().findAll());
 
     }
 
